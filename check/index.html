@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 티 자가진단 · 내 글 자연스러움 점검 — 다듬</title>
+<meta name="description" content="ChatGPT·Claude로 쓴 한국어 글을 붙여넣으면 번역투·피동 남용·접속사 남발·기계적 나열 같은 'AI 티' 패턴을 그 자리에서 찾아 표시합니다. 설치·로그인 없이 브라우저에서 바로, 무료로. 다듬 자가진단 도구.">
+<meta name="keywords" content="AI 티 검사, AI 글 자연스러움, 번역투 검사, AI 글 확인, 한국어 윤문 자가진단, 다듬, Dadeum">
+<link rel="canonical" href="https://dasolin139.github.io/dadeum/check/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#3b6cf6">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="다듬 · Dadeum">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://dasolin139.github.io/dadeum/check/">
+<meta property="og:title" content="AI 티 자가진단 · 내 글 자연스러움 점검">
+<meta property="og:description" content="AI로 쓴 한국어 글을 붙여넣으면 번역투·피동·접속사 남발을 그 자리에서 표시합니다. 설치·로그인 없이 무료로.">
+<meta property="og:image" content="https://dasolin139.github.io/dadeum/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="다듬 — AI 티 자가진단">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 티 자가진단 · 내 글 자연스러움 점검">
+<meta name="twitter:description" content="AI로 쓴 한국어 글을 붙여넣으면 번역투·피동·접속사 남발을 그 자리에서 표시합니다.">
+<meta name="twitter:image" content="https://dasolin139.github.io/dadeum/og.png">
+
+<!-- 구조화 데이터 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "다듬 AI 티 자가진단",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ko",
+  "url": "https://dasolin139.github.io/dadeum/check/",
+  "description": "AI로 쓴 한국어 글의 번역투·피동 남용·접속사 남발·기계적 나열 등 AI 티 패턴을 브라우저에서 바로 찾아 표시하는 무료 자가진단 도구.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW"}
+}
+</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: { 50:'#f6f7f9',100:'#eceef1',200:'#d6dae1',400:'#8a94a6',600:'#4b5563',800:'#1f2937',900:'#111827' },
+          brand: { 50:'#eef4ff',100:'#dbe6ff',500:'#3b6cf6',600:'#2b57d8',700:'#1f43ad' },
+        },
+        fontFamily: { sans: ['Pretendard','-apple-system','system-ui','sans-serif'] },
+        boxShadow: {
+          soft: '0 1px 2px rgba(17,24,39,0.04), 0 8px 24px -8px rgba(17,24,39,0.10)',
+          card: '0 1px 3px rgba(17,24,39,0.06), 0 20px 40px -20px rgba(17,24,39,0.18)',
+        },
+      },
+    },
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { word-break: keep-all; overflow-wrap: break-word; }
+  ::selection { background:#dbe6ff; color:#1f43ad; }
+  /* 하이라이트 색상 — 카테고리별 */
+  mark.tell { border-radius:4px; padding:0 2px; cursor:help; }
+  mark.passive      { background:#ffe4e6; box-shadow: inset 0 -2px #fda4af; }
+  mark.inanimate    { background:#fef3c7; box-shadow: inset 0 -2px #fcd34d; }
+  mark.conjunction  { background:#e0e7ff; box-shadow: inset 0 -2px #a5b4fc; }
+  mark.pronoun      { background:#e9d5ff; box-shadow: inset 0 -2px #c4b5fd; }
+  mark.nominal      { background:#ccfbf1; box-shadow: inset 0 -2px #5eead4; }
+  mark.triple       { background:#ffedd5; box-shadow: inset 0 -2px #fdba74; }
+  #output { white-space: pre-wrap; }
+  @keyframes floatUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+  .reveal { animation: floatUp .6s cubic-bezier(0.22,1,0.36,1) both; }
+  .gauge-ring { transition: stroke-dashoffset .8s cubic-bezier(0.22,1,0.36,1); }
+</style>
+</head>
+<body class="bg-white text-ink-900 antialiased">
+
+<!-- NAV -->
+<header class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-ink-100">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="../" class="flex items-center gap-2 font-bold text-lg tracking-tight text-ink-900">
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500 text-white text-sm">다</span>
+      다듬
+    </a>
+    <nav class="hidden sm:flex items-center gap-8 text-sm text-ink-600">
+      <a href="../#showcase" class="hover:text-ink-900 transition-colors">예시</a>
+      <a href="../blog/index.html" class="hover:text-ink-900 transition-colors">블로그</a>
+      <a href="../#pricing" class="hover:text-ink-900 transition-colors">요금제</a>
+    </nav>
+    <a href="mailto:ceo@dasolin.net?subject=다듬%20사전신청%20-%20자가진단&body=다듬%20출시%20알림%20받고%20싶어요."
+       class="inline-flex items-center rounded-full bg-ink-900 text-white text-sm font-medium px-4 py-2 hover:bg-ink-800 transition-colors">
+      사전신청
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative overflow-hidden bg-white border-b border-ink-100">
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 h-[360px] w-[720px] rounded-full bg-brand-50 blur-3xl opacity-70"></div>
+  </div>
+  <div class="max-w-3xl mx-auto px-6 pt-14 pb-10 sm:pt-20 sm:pb-14 text-center">
+    <div class="reveal inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-4 py-1.5 text-xs sm:text-sm font-medium text-brand-700 mb-4">
+      무료 · 설치·로그인 없이 브라우저에서 바로
+    </div>
+    <h1 class="reveal text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.15] text-ink-900">
+      내 글, AI 티 나나요?
+    </h1>
+    <p class="reveal mt-5 text-base sm:text-lg text-ink-600 leading-relaxed max-w-xl mx-auto">
+      AI로 쓴 한국어를 붙여넣으면 번역투·피동 남용·접속사 남발 같은
+      <b class="text-ink-800">AI 티 패턴</b>을 그 자리에서 찾아 표시합니다.
+      글은 서버로 전송되지 않고 브라우저 안에서만 분석돼요.
+    </p>
+  </div>
+</section>
+
+<!-- APP -->
+<section class="bg-ink-50/60">
+  <div class="max-w-5xl mx-auto px-6 py-10 sm:py-14">
+    <div class="grid lg:grid-cols-2 gap-5">
+
+      <!-- INPUT -->
+      <div class="rounded-2xl bg-white border border-ink-100 p-5 shadow-soft flex flex-col">
+        <div class="flex items-center justify-between mb-3">
+          <label for="input" class="text-sm font-semibold text-ink-800">붙여넣기</label>
+          <button id="sampleBtn" class="text-xs text-brand-600 font-medium hover:underline">예시 글 넣기</button>
+        </div>
+        <textarea id="input" rows="12"
+          class="w-full flex-1 resize-y rounded-xl border border-ink-200 p-4 text-[15px] leading-relaxed text-ink-800 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500"
+          placeholder="여기에 AI로 쓴 한국어 글을 붙여넣으세요. (최대 6,000자)"></textarea>
+        <div class="mt-3 flex items-center justify-between">
+          <span id="charCount" class="text-xs text-ink-400">0자</span>
+          <button id="checkBtn"
+            class="inline-flex items-center justify-center rounded-full bg-brand-500 text-white font-semibold px-6 py-2.5 shadow-soft hover:bg-brand-600 transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+            진단하기
+          </button>
+        </div>
+      </div>
+
+      <!-- RESULT -->
+      <div class="rounded-2xl bg-white border border-ink-100 p-5 shadow-soft flex flex-col">
+        <div class="text-sm font-semibold text-ink-800 mb-3">진단 결과</div>
+
+        <!-- empty state -->
+        <div id="emptyState" class="flex-1 flex flex-col items-center justify-center text-center text-ink-400 py-10">
+          <div class="h-12 w-12 rounded-2xl bg-ink-50 border border-ink-100 flex items-center justify-center text-xl mb-3">🔍</div>
+          <p class="text-sm">왼쪽에 글을 붙여넣고 <b class="text-ink-600">진단하기</b>를 눌러보세요.</p>
+        </div>
+
+        <!-- result -->
+        <div id="resultState" class="hidden flex-1">
+          <div class="flex items-center gap-5">
+            <div class="relative h-24 w-24 shrink-0">
+              <svg viewBox="0 0 100 100" class="h-24 w-24 -rotate-90">
+                <circle cx="50" cy="50" r="42" fill="none" stroke="#eceef1" stroke-width="10"/>
+                <circle id="gauge" class="gauge-ring" cx="50" cy="50" r="42" fill="none" stroke="#3b6cf6" stroke-width="10"
+                        stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="263.9"/>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span id="score" class="text-2xl font-extrabold text-ink-900">0</span>
+                <span class="text-[10px] text-ink-400 -mt-0.5">/ 100</span>
+              </div>
+            </div>
+            <div>
+              <div id="grade" class="text-lg font-extrabold text-ink-900">—</div>
+              <p id="gradeMsg" class="text-sm text-ink-600 mt-1 leading-relaxed">—</p>
+            </div>
+          </div>
+
+          <div id="counts" class="mt-4 flex flex-wrap gap-2"></div>
+
+          <div class="mt-4">
+            <div class="text-xs font-semibold text-ink-500 mb-2">표시된 문장 <span id="hitTotal">0</span>곳</div>
+            <div id="output" class="rounded-xl border border-ink-100 bg-ink-50/50 p-4 text-[15px] leading-loose text-ink-800 max-h-64 overflow-auto"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA after result -->
+    <div id="ctaCard" class="hidden mt-5 rounded-2xl bg-ink-900 text-white p-6 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-card">
+      <div class="text-center sm:text-left">
+        <div class="font-bold text-base sm:text-lg">찾는 건 여기까지. 고치는 건 <span class="text-brand-100">다듬</span>이 합니다.</div>
+        <p class="text-sm text-ink-400 mt-1">표시된 패턴을 내용은 그대로 둔 채 사람이 쓴 문장으로 자동으로 바꿔 드려요.</p>
+      </div>
+      <a href="mailto:ceo@dasolin.net?subject=다듬%20사전신청%20-%20자가진단&body=자가진단%20써봤습니다.%20다듬%20출시%20알림%20받고%20싶어요."
+         class="w-full sm:w-auto shrink-0 text-center rounded-full bg-brand-500 font-semibold px-7 py-3 hover:bg-brand-600 transition-colors">
+        출시 알림 받기
+      </a>
+    </div>
+
+    <p class="mt-4 text-center text-xs text-ink-400">
+      이 진단은 규칙 기반의 <b>참고용 자가진단</b>입니다. 맥락에 따라 자연스러운 표현도 표시될 수 있어요. 최종 판단은 사람이 하세요.
+    </p>
+  </div>
+</section>
+
+<!-- WHAT IT CHECKS -->
+<section class="bg-white border-t border-ink-100">
+  <div class="max-w-4xl mx-auto px-6 py-16 sm:py-20">
+    <h2 class="text-center text-2xl sm:text-3xl font-extrabold tracking-tight text-ink-900">무엇을 짚어내나요</h2>
+    <p class="text-center mt-3 text-ink-600">번역학에서 말하는 '번역투'와 AI 글의 대표 습관 6가지.</p>
+    <div class="mt-10 grid sm:grid-cols-2 gap-4">
+      <div class="rounded-2xl border border-ink-100 p-6"><div class="flex items-center gap-2 mb-2"><span class="h-3 w-3 rounded-full" style="background:#fda4af"></span><h3 class="font-bold text-ink-900">피동 남용</h3></div><p class="text-sm text-ink-600 leading-relaxed">'되어집니다', '생각됩니다'처럼 능동이면 될 자리에 쓰는 피동·이중피동.</p></div>
+      <div class="rounded-2xl border border-ink-100 p-6"><div class="flex items-center gap-2 mb-2"><span class="h-3 w-3 rounded-full" style="background:#fcd34d"></span><h3 class="font-bold text-ink-900">무생물 주어 번역투</h3></div><p class="text-sm text-ink-600 leading-relaxed">'이 기능은 편리함을 제공합니다'처럼 사물을 주어로 세운 영어식 문장.</p></div>
+      <div class="rounded-2xl border border-ink-100 p-6"><div class="flex items-center gap-2 mb-2"><span class="h-3 w-3 rounded-full" style="background:#a5b4fc"></span><h3 class="font-bold text-ink-900">접속사 남발</h3></div><p class="text-sm text-ink-600 leading-relaxed">'또한', '뿐만 아니라', '게다가'로 문장을 기계적으로 이어 붙이는 습관.</p></div>
+      <div class="rounded-2xl border border-ink-100 p-6"><div class="flex items-center gap-2 mb-2"><span class="h-3 w-3 rounded-full" style="background:#c4b5fd"></span><h3 class="font-bold text-ink-900">대명사·지시어 남발</h3></div><p class="text-sm text-ink-600 leading-relaxed">영어 it·this를 옮긴 '그것은', '이것은', '당신의'의 반복.</p></div>
+      <div class="rounded-2xl border border-ink-100 p-6"><div class="flex items-center gap-2 mb-2"><span class="h-3 w-3 rounded-full" style="background:#5eead4"></span><h3 class="font-bold text-ink-900">'~하는 것' 명사화</h3></div><p class="text-sm text-ink-600 leading-relaxed">동사로 끝내면 될 걸 '~하는 것이 중요합니다'로 늘리는 군더더기.</p></div>
+      <div class="rounded-2xl border border-ink-100 p-6"><div class="flex items-center gap-2 mb-2"><span class="h-3 w-3 rounded-full" style="background:#fdba74"></span><h3 class="font-bold text-ink-900">기계적 3중 나열</h3></div><p class="text-sm text-ink-600 leading-relaxed">'A하고, B하며, C합니다'처럼 리듬 없이 셋씩 늘어놓는 병렬.</p></div>
+    </div>
+    <p class="mt-8 text-center text-sm text-ink-500">더 깊은 설명은 <a href="../blog/ai-ti-jeulgi-checklist.html" class="text-brand-600 font-medium hover:underline">AI 티 잡아내는 체크리스트</a>에서.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white border-t border-ink-100">
+  <div class="max-w-5xl mx-auto px-6 py-12 text-center">
+    <div class="font-bold text-ink-900">다듬 · 자연스러운 한국어 윤문</div>
+    <p class="mt-2 text-sm text-ink-400">내용은 그대로, 문체만 사람답게. · © 2026 다듬</p>
+    <p class="mt-3 text-sm">
+      <a href="../" class="text-brand-600 font-medium hover:underline">홈</a>
+      <span class="text-ink-200 mx-2">·</span>
+      <a href="../blog/index.html" class="text-brand-600 font-medium hover:underline">블로그</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var MAX = 6000;
+
+  var SAMPLE = "안녕하세요, 여러분. 이번 달 뉴스레터는 여러분에게 새로운 소식을 전해드리고자 합니다. 저희의 제품은 지속적으로 개선되고 있으며, 더 나은 사용자 경험을 제공하기 위해 노력하고 있습니다. 뿐만 아니라, 다양한 기능들이 새롭게 추가되었고, 이러한 변화들은 여러분의 워크플로우를 더욱 효율적으로 만들어 줄 것입니다. 그리고 저희는 앞으로도 계속해서 여러분의 소중한 피드백에 귀를 기울이는 것이 중요하다고 생각됩니다. 그것은 저희에게 큰 힘이 됩니다. 감사합니다.";
+
+  // 규칙: 각 규칙은 category, label, color(dot), weight, 정규식(전역)
+  var RULES = [
+    { cat:"passive",     label:"피동 남용",        weight:2,
+      re: /(되어지|지어지|보여지|모여지|다뤄지|이뤄지)[가-힣]*|(되어집니다|되어진다|여겨집니다|생각됩니다|예상됩니다|기대됩니다|보여집니다|판단됩니다|파악됩니다|분석됩니다|요구됩니다|사용됩니다)/g },
+    { cat:"inanimate",   label:"무생물 주어 번역투", weight:2,
+      re: /[가-힣]+(을|를)\s*(제공|선사|보장|자랑|의미|가능하게)(합니다|한다|해\s*드립니다|해드립니다|하며|하고|해\s*줍니다|해줍니다)/g },
+    { cat:"conjunction", label:"접속사 남발",       weight:1,
+      re: /(^|[.!?…]\s+|\n)\s*(또한|그리고|하지만|그러나|따라서|그러므로|뿐만\s*아니라|더불어|게다가|또한편)/g },
+    { cat:"pronoun",     label:"대명사·지시어 남발", weight:1,
+      re: /(그것은|그것이|그것을|이것은|이것이|이것을|당신의|당신은|당신이|해당\s)/g },
+    { cat:"nominal",     label:"'~하는 것' 명사화",  weight:1,
+      re: /[가-힣]+(하|되|있|없|가|보|주|오)는\s*것(이|을|은|입니다|이다|이\s*중요)/g },
+    { cat:"triple",      label:"기계적 3중 나열",    weight:2,
+      re: /[가-힣]+고\s*,[\s가-힣을를이가은는에서도의]{1,22}?[가-힣]+며\s*,|[가-힣]+며\s*,[\s가-힣을를이가은는에서도의]{1,22}?[가-힣]+고\s*,/g },
+  ];
+
+  var GRADES = [
+    { min:80, label:"사람이 쓴 글에 가깝습니다", color:"#16a34a",
+      msg:"AI 티 패턴이 거의 없어요. 이대로 내보내도 좋습니다." },
+    { min:55, label:"군데군데 AI 티가 보입니다", color:"#3b6cf6",
+      msg:"표시된 몇 곳만 손보면 훨씬 자연스러워집니다." },
+    { min:30, label:"AI 티가 뚜렷합니다", color:"#f59e0b",
+      msg:"번역투·피동·접속사가 반복돼요. 문장을 사람 말투로 풀어 보세요." },
+    { min:0,  label:"기계가 쓴 티가 강합니다", color:"#ef4444",
+      msg:"패턴이 촘촘합니다. 전체적으로 다시 다듬는 걸 권합니다." },
+  ];
+
+  var $ = function (id) { return document.getElementById(id); };
+  var input = $("input"), out = $("output");
+
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function collect(text) {
+    var hits = [];
+    RULES.forEach(function (rule) {
+      var m; rule.re.lastIndex = 0;
+      while ((m = rule.re.exec(text)) !== null) {
+        var full = m[0];
+        // 접속사 규칙은 앞의 구두점·공백 캡처를 제외하고 접속사만 표시
+        var start = m.index, len = full.length;
+        if (rule.cat === "conjunction") {
+          var lead = full.match(/^([.!?…]?\s*|\n?\s*)/)[0].length;
+          start += lead; len -= lead; full = full.slice(lead);
+        }
+        if (full.trim().length === 0) { if (m.index === rule.re.lastIndex) rule.re.lastIndex++; continue; }
+        hits.push({ start:start, end:start+len, cat:rule.cat, weight:rule.weight });
+        if (m.index === rule.re.lastIndex) rule.re.lastIndex++;
+      }
+    });
+    // 겹치는 매치는 먼저 시작한 것 우선, 겹치면 버림
+    hits.sort(function(a,b){ return a.start - b.start || b.end - a.end; });
+    var merged = [], lastEnd = -1;
+    hits.forEach(function(h){ if (h.start >= lastEnd) { merged.push(h); lastEnd = h.end; } });
+    return merged;
+  }
+
+  function render(text, hits) {
+    var html = "", cur = 0;
+    hits.forEach(function(h){
+      html += esc(text.slice(cur, h.start));
+      html += '<mark class="tell ' + h.cat + '">' + esc(text.slice(h.start, h.end)) + '</mark>';
+      cur = h.end;
+    });
+    html += esc(text.slice(cur));
+    return html;
+  }
+
+  function score(text, hits) {
+    var chars = text.replace(/\s/g,"").length || 1;
+    var weighted = hits.reduce(function(s,h){ return s + h.weight; }, 0);
+    // 100자당 가중 히트 밀도 → 점수. 밀도 0 = 100점, 밀도 6+ = 0점 근처
+    var density = weighted / chars * 100;
+    var s = Math.round(100 - density * 16);
+    return Math.max(0, Math.min(100, s));
+  }
+
+  function grade(s){ for (var i=0;i<GRADES.length;i++){ if (s>=GRADES[i].min) return GRADES[i]; } return GRADES[GRADES.length-1]; }
+
+  function run() {
+    var text = input.value.slice(0, MAX);
+    if (!text.trim()) return;
+    var hits = collect(text);
+    var s = score(text, hits);
+    var g = grade(s);
+
+    $("emptyState").classList.add("hidden");
+    $("resultState").classList.remove("hidden");
+    $("resultState").classList.add("reveal");
+    $("ctaCard").classList.remove("hidden");
+
+    // gauge
+    var circ = 263.9;
+    var gauge = $("gauge");
+    gauge.setAttribute("stroke", g.color);
+    gauge.setAttribute("stroke-dashoffset", circ);
+    // 강제 리플로우 후 애니메이션
+    void gauge.getBoundingClientRect();
+    gauge.setAttribute("stroke-dashoffset", circ * (1 - s/100));
+
+    // 숫자 카운트업
+    var scoreEl = $("score"); var start = 0, dur = 700, t0 = null;
+    function step(ts){ if(!t0) t0=ts; var p=Math.min(1,(ts-t0)/dur); scoreEl.textContent = Math.round(s*p); if(p<1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+
+    $("grade").textContent = g.label;
+    $("grade").style.color = g.color;
+    $("gradeMsg").textContent = g.msg;
+
+    // 카테고리별 카운트
+    var byCat = {};
+    hits.forEach(function(h){ byCat[h.cat] = (byCat[h.cat]||0)+1; });
+    var labels = {}; RULES.forEach(function(r){ labels[r.cat]=r.label; });
+    var chips = "";
+    Object.keys(byCat).forEach(function(c){
+      chips += '<span class="inline-flex items-center gap-1.5 rounded-full border border-ink-100 bg-ink-50 px-3 py-1 text-xs text-ink-700">'
+             + '<span class="h-2.5 w-2.5 rounded-full" data-cat="'+c+'"></span>'
+             + labels[c] + ' <b class="text-ink-900">'+byCat[c]+'</b></span>';
+    });
+    if (!chips) chips = '<span class="text-sm text-ink-500">표시된 패턴이 없습니다. 깔끔하네요 👏</span>';
+    $("counts").innerHTML = chips;
+    // chip dot 색상
+    var dotColor = { passive:"#fda4af", inanimate:"#fcd34d", conjunction:"#a5b4fc", pronoun:"#c4b5fd", nominal:"#5eead4", triple:"#fdba74" };
+    $("counts").querySelectorAll("[data-cat]").forEach(function(el){ el.style.background = dotColor[el.getAttribute("data-cat")]; });
+
+    $("hitTotal").textContent = hits.length;
+    out.innerHTML = render(text, hits) || esc(text);
+  }
+
+  function updateCount(){
+    var n = input.value.length;
+    $("charCount").textContent = n.toLocaleString() + "자" + (n > MAX ? " · 최대 "+MAX.toLocaleString()+"자까지 분석" : "");
+    $("checkBtn").disabled = input.value.trim().length === 0;
+  }
+
+  input.addEventListener("input", updateCount);
+  $("checkBtn").addEventListener("click", run);
+  $("sampleBtn").addEventListener("click", function(){ input.value = SAMPLE; updateCount(); run(); });
+  // Ctrl/Cmd+Enter로 진단
+  input.addEventListener("keydown", function(e){ if((e.metaKey||e.ctrlKey) && e.key==="Enter"){ run(); } });
+  updateCount();
+})();
+</script>
+</body>
+</html>
