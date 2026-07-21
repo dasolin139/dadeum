@@ -38,7 +38,29 @@ npm run dev
 cp .env.example .env.local
 ```
 
-## Vercel 배포
+## 배포 — 5분 안에 라이브
+
+### 원클릭 배포 (권장)
+
+아래 버튼을 누르면 이 저장소를 Vercel 로 임포트하고, 필요한 키를 입력받아 바로 배포합니다.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dasolin139/dadeum&env=AI_GATEWAY_API_KEY&envLink=https://vercel.com/dashboard&project-name=dadeum&repository-name=dadeum)
+
+**사람이 해야 하는 일은 딱 이것뿐입니다 (약 5분):**
+
+1. 위 **Deploy** 버튼 클릭 → Vercel 로그인(없으면 무료 가입) → 저장소 임포트.
+2. 임포트 화면에서 `AI_GATEWAY_API_KEY` 한 칸을 채웁니다.
+   - 키 발급: [Vercel 대시보드](https://vercel.com/dashboard) → **AI Gateway** → **API Keys** → Create. (팀마다 매월 무료 크레딧 제공 — 스모크 테스트엔 충분)
+   - 이 키 하나면 윤문이 실제로 동작합니다. (비워 두면 데모 예시 폴백으로 뜹니다)
+3. **Deploy** → 1~2분 뒤 `https://dadeum-xxx.vercel.app` 라이브 URL 이 나옵니다. **끝.**
+
+### 결제 링크 붙이기 (수익 테스트용, 선택)
+
+지금 배포해도 유료 버튼은 **페이크도어**(관심·이메일 수집)로 동작하므로 WTP 신호는 바로 쌓입니다.
+실제 결제 클릭까지 측정하려면 [`MONETIZE.md`](./MONETIZE.md) 를 따라 결제 링크를 만든 뒤,
+Vercel **Settings → Environment Variables** 에 `NEXT_PUBLIC_CHECKOUT_URL` 로 넣고 재배포하면 됩니다. **코드 수정 없음.**
+
+### CLI 로 배포 (대안)
 
 ```bash
 npm i -g vercel   # 최초 1회
@@ -46,9 +68,7 @@ vercel            # 프리뷰 배포 / 프로젝트 연결
 vercel --prod     # 프로덕션 배포
 ```
 
-또는 GitHub 저장소를 Vercel 에 임포트하면 push 마다 자동 배포됩니다. 배포 후 프로젝트 **Settings → Environment Variables** 에 `AI_GATEWAY_API_KEY` 를 넣으면 라이브로 동작합니다.
-
-> AI Gateway 는 Vercel 팀마다 매월 무료 크레딧을 제공합니다. 스모크 테스트에는 충분합니다.
+배포 후 프로젝트 **Settings → Environment Variables** 에 `AI_GATEWAY_API_KEY` 를 넣으면 라이브로 동작합니다.
 
 ## WTP(지불 의사) 신호는 어디서 보나
 
