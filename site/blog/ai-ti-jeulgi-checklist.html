@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI가 쓴 티, 이렇게 잡아냅니다 · 다듬</title>
+<meta name="description" content="ChatGPT로 쓴 한글은 왜 어색할까요. 번역투, 피동태 남용, 접속사 남발 같은 'AI 티'를 알아보고 한 문장씩 자연스럽게 고치는 실전 체크리스트를 예시와 함께 정리했습니다.">
+<meta name="keywords" content="AI 티 제거, AI 글 자연스럽게, 번역투 고치기, ChatGPT 문체, AI 글 어색함, 한국어 윤문">
+<link rel="canonical" href="https://dasolin139.github.io/dadeum/blog/ai-ti-jeulgi-checklist.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#3b6cf6">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="다듬 · Dadeum">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://dasolin139.github.io/dadeum/blog/ai-ti-jeulgi-checklist.html">
+<meta property="og:title" content="AI가 쓴 티, 이렇게 잡아냅니다">
+<meta property="og:description" content="번역투·피동태·접속사 남발 같은 'AI 티'를 한 문장씩 자연스럽게 고치는 실전 체크리스트.">
+<meta property="og:image" content="https://dasolin139.github.io/dadeum/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI가 쓴 티, 이렇게 잡아냅니다">
+<meta name="twitter:description" content="번역투·피동태·접속사 남발 같은 'AI 티'를 한 문장씩 자연스럽게 고치는 실전 체크리스트.">
+<meta name="twitter:image" content="https://dasolin139.github.io/dadeum/og.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI가 쓴 티, 이렇게 잡아냅니다",
+  "inLanguage": "ko",
+  "description": "번역투, 피동태 남용, 접속사 남발 같은 'AI 티'를 알아보고 한 문장씩 자연스럽게 고치는 실전 체크리스트.",
+  "image": "https://dasolin139.github.io/dadeum/og.png",
+  "mainEntityOfPage": "https://dasolin139.github.io/dadeum/blog/ai-ti-jeulgi-checklist.html",
+  "author": {"@type": "Organization", "name": "다듬"},
+  "publisher": {"@type": "Organization", "name": "다듬"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "다듬", "item": "https://dasolin139.github.io/dadeum/"},
+    {"@type": "ListItem", "position": 2, "name": "블로그", "item": "https://dasolin139.github.io/dadeum/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "AI가 쓴 티, 이렇게 잡아냅니다"}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: {
+        ink: { 50:'#f6f7f9',100:'#eceef1',200:'#d6dae1',400:'#8a94a6',600:'#4b5563',700:'#374151',800:'#1f2937',900:'#111827' },
+        brand: { 50:'#eef4ff',100:'#dbe6ff',500:'#3b6cf6',600:'#2b57d8',700:'#1f43ad' },
+      },
+      fontFamily: { sans: ['Pretendard','-apple-system','system-ui','sans-serif'] },
+      boxShadow: { soft:'0 1px 2px rgba(17,24,39,0.04), 0 8px 24px -8px rgba(17,24,39,0.10)', card:'0 1px 3px rgba(17,24,39,0.06), 0 20px 40px -20px rgba(17,24,39,0.18)' },
+    } },
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { word-break: keep-all; overflow-wrap: break-word; }
+  .before-panel { background: linear-gradient(180deg,#fdf5f4 0%,#fbf0ef 100%); }
+  .after-panel { background: linear-gradient(180deg,#eef4ff 0%,#e7f0ff 100%); }
+  .prose-ko h2 { font-size:1.5rem; line-height:1.4; font-weight:800; letter-spacing:-.01em; color:#111827; margin:2.4rem 0 1rem; }
+  .prose-ko p { color:#374151; line-height:1.95; margin:1.1rem 0; font-size:1.0625rem; }
+  .prose-ko strong { color:#1f43ad; font-weight:700; }
+  ::selection { background:#dbe6ff; color:#1f43ad; }
+</style>
+</head>
+<body class="bg-white text-ink-900 antialiased">
+
+<header class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-ink-100">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-2 font-bold text-lg tracking-tight text-ink-900">
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500 text-white text-sm">다</span>
+      다듬
+    </a>
+    <nav class="hidden sm:flex items-center gap-8 text-sm text-ink-600">
+      <a href="./index.html" class="hover:text-ink-900 transition-colors">블로그</a>
+      <a href="../index.html#pricing" class="hover:text-ink-900 transition-colors">요금제</a>
+    </nav>
+    <a href="mailto:ceo@dasolin.net?subject=다듬%20사전신청%20-%20블로그&body=다듬%20사전신청에%20관심%20있습니다.%20출시%20알림%20받고%20싶어요."
+       class="inline-flex items-center rounded-full bg-ink-900 text-white text-sm font-medium px-4 py-2 hover:bg-ink-800 transition-colors">
+      사전신청
+    </a>
+  </div>
+</header>
+
+<main class="max-w-2xl mx-auto px-6 pt-14 pb-8">
+  <nav class="text-xs text-ink-400 mb-6">
+    <a href="../index.html" class="hover:text-ink-600">다듬</a> ·
+    <a href="./index.html" class="hover:text-ink-600">블로그</a>
+  </nav>
+  <span class="inline-flex rounded-full bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 border border-brand-100 mb-4">AI 문체</span>
+  <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-[1.25] text-ink-900">AI가 쓴 티, 이렇게 잡아냅니다</h1>
+  <p class="mt-4 text-ink-400 text-sm">번역투·피동태·접속사 남발을 한 문장씩 고치는 실전 체크리스트</p>
+
+  <article class="prose-ko mt-10">
+    <p>초안을 받아 읽다 보면 이상하게 손이 멈추는 문장이 있습니다. 틀린 데는 없어요. 맞춤법도 멀쩡하고 뜻도 통합니다. 그런데 사람이 말하듯 쓰지는 않았구나, 싶은 감각. 요즘은 그게 대부분 AI가 쓴 글입니다.</p>
+    <p>문제는 이 어색함이 딱 짚어지지 않는다는 데 있습니다. "어딘가 AI 같다"는 느낌만 있고 어디를 고쳐야 할지 모르니, 결국 처음부터 다시 쓰게 되죠. 그래서 저는 팀에 들어온 원고를 볼 때 아예 항목을 정해두고 하나씩 확인합니다. 아래는 그 체크리스트입니다. 실제로 자주 걸리는 순서대로 적었어요.</p>
+
+    <h2>1. 사물이 문장의 주어로 나선다</h2>
+    <p>한국어는 사람이 주어입니다. AI는 영어 구조를 그대로 옮겨서 사물을 주어 자리에 올려놓습니다.</p>
+    <div class="my-6 grid sm:grid-cols-2 gap-3">
+      <div class="before-panel rounded-xl border border-rose-100 p-4"><div class="text-xs font-semibold text-rose-500 mb-2">before</div><p class="text-[15px] leading-relaxed text-ink-700 m-0">이 기능은 사용자에게 편리함을 제공합니다.</p></div>
+      <div class="after-panel rounded-xl border border-brand-100 p-4"><div class="text-xs font-semibold text-brand-600 mb-2">after</div><p class="text-[15px] leading-relaxed text-ink-800 m-0">이 기능을 쓰면 훨씬 편합니다.</p></div>
+    </div>
+    <p>"편리함을 제공한다"는 말, 실제 대화에서 쓰는 사람 거의 없습니다. 주어를 사람으로 돌리기만 해도 문장이 숨을 쉽니다.</p>
+
+    <h2>2. 안 써도 될 피동태를 쓴다</h2>
+    <p>"~되어진다", "~라고 생각되어진다" 같은 이중 피동은 물론이고, 그냥 능동으로 쓰면 될 자리에 피동을 넣는 습관도 AI 글의 단골입니다.</p>
+    <div class="my-6 grid sm:grid-cols-2 gap-3">
+      <div class="before-panel rounded-xl border border-rose-100 p-4"><div class="text-xs font-semibold text-rose-500 mb-2">before</div><p class="text-[15px] leading-relaxed text-ink-700 m-0">많은 개선이 이루어질 것으로 예상됩니다.</p></div>
+      <div class="after-panel rounded-xl border border-brand-100 p-4"><div class="text-xs font-semibold text-brand-600 mb-2">after</div><p class="text-[15px] leading-relaxed text-ink-800 m-0">앞으로 많이 개선될 겁니다.</p></div>
+    </div>
+    <p>누가 하는지 숨기고 싶을 때만 피동을 쓰세요. 나머지는 능동이 정답입니다.</p>
+
+    <h2>3. 접속사로 문장을 이어 붙인다</h2>
+    <p>"또한", "뿐만 아니라", "그리고"가 문단마다 등장하면 십중팔구 AI입니다. 사람은 접속사 없이도 흐름을 만들어요. 앞 문장이 뒷 문장을 자연스럽게 부르니까요.</p>
+    <div class="my-6 grid sm:grid-cols-2 gap-3">
+      <div class="before-panel rounded-xl border border-rose-100 p-4"><div class="text-xs font-semibold text-rose-500 mb-2">before</div><p class="text-[15px] leading-relaxed text-ink-700 m-0">이 도구는 빠릅니다. 또한 정확합니다. 뿐만 아니라 사용하기도 쉽습니다.</p></div>
+      <div class="after-panel rounded-xl border border-brand-100 p-4"><div class="text-xs font-semibold text-brand-600 mb-2">after</div><p class="text-[15px] leading-relaxed text-ink-800 m-0">빠르고 정확한데, 무엇보다 쓰기가 쉽습니다.</p></div>
+    </div>
+    <p>접속사를 지우고 문장을 붙여보세요. 안 붙으면 그때 최소한만 넣으면 됩니다.</p>
+
+    <h2>4. 세 개씩 기계적으로 나열한다</h2>
+    <p>"A하고, B하며, C합니다." AI는 리듬 없이 항목을 셋씩 늘어놓는 걸 좋아합니다. 셋 다 비슷한 무게라 어디에 힘이 실렸는지 안 보이죠.</p>
+    <div class="my-6 grid sm:grid-cols-2 gap-3">
+      <div class="before-panel rounded-xl border border-rose-100 p-4"><div class="text-xs font-semibold text-rose-500 mb-2">before</div><p class="text-[15px] leading-relaxed text-ink-700 m-0">신뢰를 쌓고, 관계를 다지며, 전환을 높입니다.</p></div>
+      <div class="after-panel rounded-xl border border-brand-100 p-4"><div class="text-xs font-semibold text-brand-600 mb-2">after</div><p class="text-[15px] leading-relaxed text-ink-800 m-0">신뢰가 쌓이면 관계가 생기고, 그게 결국 전환으로 이어집니다.</p></div>
+    </div>
+    <p>나열보다 인과로 엮으면 문장에 방향이 생깁니다.</p>
+
+    <h2>5. 대명사를 자꾸 집어넣는다</h2>
+    <p>영어의 it, this를 그대로 옮긴 "그것", "이것", "해당"이 반복되면 번역기 냄새가 납니다. 한국어는 주어를 생략해도 다 알아듣습니다.</p>
+    <div class="my-6 grid sm:grid-cols-2 gap-3">
+      <div class="before-panel rounded-xl border border-rose-100 p-4"><div class="text-xs font-semibold text-rose-500 mb-2">before</div><p class="text-[15px] leading-relaxed text-ink-700 m-0">이 방법을 사용하면 그것은 시간을 절약해 줍니다.</p></div>
+      <div class="after-panel rounded-xl border border-brand-100 p-4"><div class="text-xs font-semibold text-brand-600 mb-2">after</div><p class="text-[15px] leading-relaxed text-ink-800 m-0">이 방법을 쓰면 시간이 절약됩니다.</p></div>
+    </div>
+
+    <h2>6. "~하는 것"으로 명사를 만든다</h2>
+    <p>동사로 끝내면 될 걸 굳이 "~하는 것이 중요합니다"로 늘립니다. 문장만 길어지고 힘은 빠져요.</p>
+    <div class="my-6 grid sm:grid-cols-2 gap-3">
+      <div class="before-panel rounded-xl border border-rose-100 p-4"><div class="text-xs font-semibold text-rose-500 mb-2">before</div><p class="text-[15px] leading-relaxed text-ink-700 m-0">꾸준히 쓰는 것이 무엇보다 중요하다고 할 수 있습니다.</p></div>
+      <div class="after-panel rounded-xl border border-brand-100 p-4"><div class="text-xs font-semibold text-brand-600 mb-2">after</div><p class="text-[15px] leading-relaxed text-ink-800 m-0">무엇보다 꾸준히 써야 합니다.</p></div>
+    </div>
+
+    <h2>그런데, 이걸 매번 손으로 하면</h2>
+    <p>여섯 항목을 문장마다 대조하는 일, 한두 문단이면 할 만합니다. 그런데 블로그 글 한 편, 상세페이지 하나, 이메일 한 통마다 이걸 반복하면 금방 지칩니다. 저도 그랬어요. 고칠 줄은 아는데 시간이 안 나는 거죠.</p>
+    <p><strong>다듬</strong>은 바로 그 반복을 대신합니다. AI가 쓴 한글을 붙여넣으면 위 패턴을 찾아서 사람이 쓴 것처럼 문체만 바꿔줍니다. 내용은 한 글자도 건드리지 않아요. 뜻은 그대로 두고 어색함만 걷어내는 겁니다.</p>
+  </article>
+
+  <div class="mt-12 rounded-2xl bg-brand-500 text-white p-8 text-center shadow-card">
+    <div class="text-lg sm:text-xl font-extrabold leading-snug">AI 초안을 사람이 쓴 것처럼, 한 번에.</div>
+    <p class="mt-2 text-brand-50 text-sm">지금은 출시를 준비하며 사전신청을 받고 있습니다. 준비되면 가장 먼저 알려드릴게요.</p>
+    <a href="mailto:ceo@dasolin.net?subject=다듬%20사전신청%20-%20블로그&body=다듬%20사전신청에%20관심%20있습니다.%20출시%20알림%20받고%20싶어요."
+       class="mt-6 inline-flex items-center justify-center rounded-full bg-white text-brand-700 font-bold px-8 py-3.5 hover:-translate-y-0.5 transition-all duration-200">
+      출시 알림 받기
+    </a>
+  </div>
+</main>
+
+<footer class="bg-white border-t border-ink-100 mt-8">
+  <div class="max-w-2xl mx-auto px-6 py-10 text-center">
+    <div class="font-bold text-ink-900">다듬 · 자연스러운 한국어 윤문</div>
+    <p class="mt-2 text-sm text-ink-400">내용은 그대로, 문체만 사람답게. · © 2026 다듬</p>
+  </div>
+</footer>
+
+</body>
+</html>
