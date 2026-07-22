@@ -72,6 +72,10 @@
   mark.pronoun      { background:#e9d5ff; box-shadow: inset 0 -2px #c4b5fd; }
   mark.nominal      { background:#ccfbf1; box-shadow: inset 0 -2px #5eead4; }
   mark.triple       { background:#ffedd5; box-shadow: inset 0 -2px #fdba74; }
+  mark.report       { background:#fce7f3; box-shadow: inset 0 -2px #f9a8d4; }
+  mark.hedge        { background:#dbeafe; box-shadow: inset 0 -2px #93c5fd; }
+  mark.frame        { background:#fee2e2; box-shadow: inset 0 -2px #fca5a5; }
+  mark.plural       { background:#dcfce7; box-shadow: inset 0 -2px #86efac; }
   #output { white-space: pre-wrap; }
   @keyframes floatUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
   .reveal { animation: floatUp .6s cubic-bezier(0.22,1,0.36,1) both; }
@@ -269,6 +273,16 @@
       re: /[가-힣]+(하|되|있|없|가|보|주|오)는\s*것(이|을|은|입니다|이다|이\s*중요)/g },
     { cat:"triple",      label:"기계적 3중 나열",    weight:2,
       re: /[가-힣]+고\s*,[\s가-힣을를이가은는에서도의]{1,22}?[가-힣]+며\s*,|[가-힣]+며\s*,[\s가-힣을를이가은는에서도의]{1,22}?[가-힣]+고\s*,/g },
+    { cat:"report",      label:"관찰자 보고체 번역투", weight:2,
+      re: /것으로\s*(나타났다|나타난다|나타납니다|보인다|보입니다|알려졌다|알려져\s*있다|드러났다|드러난다|분석된다|분석됐다|분석됩니다|전망된다|전망됩니다|예상된다|조사됐다|조사됐습니다|확인됐다|확인된다|판단된다)/g },
+    { cat:"hedge",       label:"완곡 단정 상투구",     weight:1,
+      re: /(라고|다고|라)\s*(할\s*수\s*있다|할\s*수\s*있습니다|할\s*수\s*있을\s*것이다|볼\s*수\s*있다|볼\s*수\s*있습니다)/g },
+    { cat:"frame",       label:"'중요한 것은 ~' 상투 구문", weight:1,
+      re: /(가장\s*)?중요한\s*것은[가-힣\s,]{1,40}?(는\s*것이다|다는\s*것이다|라는\s*것이다|라는\s*점이다|다는\s*점이다|점입니다)/g },
+    { cat:"plural",      label:"불필요한 복수 '들'",   weight:1,
+      re: /(기능|변화|요소|부분|방법|정보|측면|결과|사례|장점|특징|과정|문제점|기술|서비스|제품|시스템)들/g },
+    { cat:"passive",     label:"피동 진행형 남용",     weight:1,
+      re: /(되고\s*있으며|되고\s*있습니다|되고\s*있다|개선되고\s*있|향상되고\s*있|발전되고\s*있)/g },
   ];
 
   var GRADES = [
@@ -376,7 +390,7 @@
     if (!chips) chips = '<span class="text-sm text-ink-500">표시된 패턴이 없습니다. 깔끔하네요 👏</span>';
     $("counts").innerHTML = chips;
     // chip dot 색상
-    var dotColor = { passive:"#fda4af", inanimate:"#fcd34d", conjunction:"#a5b4fc", pronoun:"#c4b5fd", nominal:"#5eead4", triple:"#fdba74" };
+    var dotColor = { passive:"#fda4af", inanimate:"#fcd34d", conjunction:"#a5b4fc", pronoun:"#c4b5fd", nominal:"#5eead4", triple:"#fdba74", report:"#f9a8d4", hedge:"#93c5fd", frame:"#fca5a5", plural:"#86efac" };
     $("counts").querySelectorAll("[data-cat]").forEach(function(el){ el.style.background = dotColor[el.getAttribute("data-cat")]; });
 
     $("hitTotal").textContent = hits.length;

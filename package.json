@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --test lib/check/engine.test.mjs"
   },
   "dependencies": {
     "@ai-sdk/gateway": "^4.0.26",
